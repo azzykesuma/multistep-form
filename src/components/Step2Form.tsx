@@ -1,37 +1,18 @@
 import { useState } from "react";
 import { AnimatePresence, motion as m } from "framer-motion";
-import arcadeImage from "../assets/images/icon-arcade.svg";
-import advancedImage from "../assets/images/icon-advanced.svg";
-import ProImage from "../assets/images/icon-pro.svg";
 import { Switch } from "./ui/switch";
 import { PlanType } from "Types";
 import { setPlan, setPaymentPlan } from "@/slices/EditForm";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {plansDetails} from '@/lib/plans'
+import { RootState } from "@/store/store";
+import LayoutStep from "@/layout/LayoutStep";
 
-const plansDetails = [
-  {
-    name: "Arcade",
-    image: arcadeImage,
-    priceMonth: 9,
-    priceYear: 90,
-  },
-  {
-    name: "Advanced",
-    image: advancedImage,
-    priceMonth: 12,
-    priceYear: 120,
-  },
-  {
-    name: "Pro",
-    image: ProImage,
-    priceMonth: 15,
-    priceYear: 150,
-  },
-];
 const Step2Form = () => {
-  const [checked, setIsChecked] = useState(false);
+  const {paymentPlan, plan}= useSelector((state:RootState) => state.Form);
+  const [checked, setIsChecked] = useState(paymentPlan === "yearly");
   const dispatch = useDispatch();
-  const [selectedPlan, setSelectedPlan] = useState<PlanType>("Arcade");
+  const [selectedPlan, setSelectedPlan] = useState<PlanType>(plan || 'Arcade');
 
   const handleSelectPlan = (plan: PlanType) => {
     setSelectedPlan(plan);
@@ -42,13 +23,7 @@ const Step2Form = () => {
     dispatch(setPaymentPlan(checked ? "monthly" : "yearly"));
   };
   return (
-    <m.div
-      className={`absolute bg-white rounded-lg shadow-lg p-4`}
-      initial={{ opacity: 0, x: 100 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -100 }}
-      layout
-    >
+    <LayoutStep>
       <h1 className={`text-lg text-marine-blue font-bold`}>Select your plan</h1>
       <p className={`my-6 text-cool-gray`}>
         You have the option of monthly or yearly billing
@@ -96,7 +71,7 @@ const Step2Form = () => {
         <Switch checked={checked} onCheckedChange={handleSwitchPaymentPlan} />
         <p className={`font-bold text-marine-blue`}>Yearly</p>
       </div>
-    </m.div>
+      </LayoutStep>
   );
 };
 

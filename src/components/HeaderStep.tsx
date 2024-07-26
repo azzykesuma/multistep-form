@@ -28,7 +28,7 @@ const HeaderStep = () => {
     },
     {
       label: 4,
-      disabled: false,
+      disabled: step === 1 || step === 2,
     },
   ];
   return (

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { FormStep1Schema } from "@/lib/FormSchema";
-
+import LayoutStep from "@/layout/LayoutStep";
 interface Step1FormProps {
     error: FormStep1Schema;
 }
@@ -30,13 +30,7 @@ const Step1Form = ({error}: Step1FormProps) => {
   };
 
   return (
-    <motion.div
-      className="absolute bg-white rounded-lg shadow-lg p-4"
-      initial={{ x: 100, opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: -100, opacity: 0 }}
-      layout
-    >
+    <LayoutStep>
       <h1 className="text-lg text-marine-blue font-bold">Personal info</h1>
       <p className="my-6 text-cool-gray ">
         Please Provide your name, email address and phone number
@@ -109,7 +103,7 @@ const Step1Form = ({error}: Step1FormProps) => {
           </AnimatePresence>
         </div>
       </form>
-    </motion.div>
+    </LayoutStep>
   );
 };
 

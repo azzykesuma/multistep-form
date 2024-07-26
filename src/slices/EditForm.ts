@@ -1,11 +1,16 @@
-import { FormSchema } from "@/lib/FormSchema";
+import { FormSchema, AddsOn } from "@/lib/FormSchema";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+  
+  interface State {
+    addsOn: AddsOn[];
+  }
 
 const initialState : FormSchema = {
     name: '',
     email: '',
     phoneNumber: '',
-    plan: 'arcade',
+    plan: 'Arcade',
     paymentPlan: 'monthly',
     addsOn: []
 }
@@ -29,8 +34,11 @@ export const FormSlice = createSlice({
         setPaymentPlan: (state: { paymentPlan: string; }, action: PayloadAction<string>) => {
             state.paymentPlan = action.payload
         },
+        setAddsOn : (state: State, action: PayloadAction<AddsOn[]>) => {
+            state.addsOn = action.payload;
+        }
     }
 })
 
-export const { setName, setEmail, setPhoneNumber, setPaymentPlan, setPlan } = FormSlice.actions
+export const { setName, setEmail, setPhoneNumber, setPaymentPlan, setPlan, setAddsOn } = FormSlice.actions
 export default FormSlice.reducer
