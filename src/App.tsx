@@ -12,7 +12,7 @@ export const StepContext = createContext<StepContextType>({
 
 
 function App() {
-  const [step, setStep] = useState<StepType>(1)
+  const [step, setStep] = useState<StepType>(5)
   return (
   <StepContext.Provider value={{step, setStep}}>
     <Layout>

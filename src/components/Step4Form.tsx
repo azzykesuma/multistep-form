@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { plansDetails } from "@/lib/plans";
 import { useContext } from "react";
 import { StepContext } from "@/App";
-import LayoutStep from "@/layout/LayoutStep";
+import {LayoutStep} from "@/layout/LayoutStep";
 const Step4Form = () => {
   const { setStep } = useContext(StepContext);
   const { plan, paymentPlan, addsOn } = useSelector(
@@ -26,7 +26,7 @@ const Step4Form = () => {
   };
   return (
     <LayoutStep>
-      <h1 className={`text-lg text-marine-blue font-bold`}>Finishing up</h1>
+      <LayoutStep.Header>Finishing up</LayoutStep.Header>
       <p className={`my-6 text-cool-gray`}>
         Double-check everything looks OK before confirming
       </p>

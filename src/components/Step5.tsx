@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion as m } from "framer-motion";
 import loadingImage from "../assets/images/loadingIllu.svg";
 import thanksImage from "../assets/images/icon-thank-you.svg";
-import LayoutStep from "@/layout/LayoutStep";
+import {LayoutStep} from "@/layout/LayoutStep";
 const Step5 = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -19,14 +19,14 @@ const Step5 = () => {
           <div className="flex flex-col items-center">
             <m.img
               src={loadingImage}
-              className="w-20 mt-4"
+              className="w-20 mt-4 md:w-36"
               animate={{ scale: [1, 1, 1, 1.2, 1.3, 1.4, 1.3, 1.2, 1.1, 1] }}
               transition={{ repeat: Infinity, duration: 1 }}
             />
             <m.p
               animate={{ opacity: [0, 1, 0] }}
               transition={{ repeat: Infinity, duration: 1 }}
-              className="text-cool-gray mt-4"
+              className="text-cool-gray mt-4 md:mt-20"
             >
               Submitting...
             </m.p>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import {setAddsOn} from '@/slices/EditForm'
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import LayoutStep from "@/layout/LayoutStep";
+import {LayoutStep} from "@/layout/LayoutStep";
 
 const Step3Form = () => {
   const dispatch = useDispatch();
@@ -57,7 +57,7 @@ const Step3Form = () => {
 
   return (
     <LayoutStep>
-      <h1 className={`text-lg text-marine-blue font-bold`}>Pick add-ons</h1>
+      <LayoutStep.Header>Pick add on</LayoutStep.Header>
       <p className={`my-6 text-cool-gray`}>
         Add-ons help enhance your gaming experience
       </p>
@@ -68,11 +68,11 @@ const Step3Form = () => {
             aria-description="select add-on"
             onClick={() => handleSelectAddOn(option.name)}
             key={option.id}
-            className={`flex justify-between gap-4 border-[1px]  rounded-md p-2 items-center my-4 ${
+            className={`flex justify-between gap-4 border-[1px]  rounded-md p-2 md:p-4 items-center my-4 ${
               option.checked ? "border-purplish-blue" : "border-cool-gray"
             }`}
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 md:gap-4">
               <Checkbox checked={option.checked ? true : undefined} />
               <div>
                 <h3 className={`text-lg font-bold text-marine-blue `}>

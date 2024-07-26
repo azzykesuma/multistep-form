@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { FormStep1Schema } from "@/lib/FormSchema";
-import LayoutStep from "@/layout/LayoutStep";
+import {LayoutStep} from "@/layout/LayoutStep";
 interface Step1FormProps {
     error: FormStep1Schema;
 }
@@ -31,7 +31,7 @@ const Step1Form = ({error}: Step1FormProps) => {
 
   return (
     <LayoutStep>
-      <h1 className="text-lg text-marine-blue font-bold">Personal info</h1>
+      <LayoutStep.Header>Personal info</LayoutStep.Header>
       <p className="my-6 text-cool-gray ">
         Please Provide your name, email address and phone number
       </p>

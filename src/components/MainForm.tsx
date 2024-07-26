@@ -1,5 +1,5 @@
 import { StepContext } from "@/App";
-import HeaderStep from "./HeaderStep";
+import {AsideStep, HeaderStep} from "./HeaderStep";
 import { useContext, useState } from "react";
 import { AnimatePresence, motion as m } from "framer-motion";
 import Step1Form from "./Step1Form";
@@ -11,6 +11,7 @@ import Step2Form from "./Step2Form";
 import Step3Form from "./Step3Form";
 import Step4Form from "./Step4Form";
 import Step5 from "./Step5";
+import FooterBtn from "./FooterBtn";
 
 
 
@@ -81,34 +82,36 @@ const MainForm = () => {
 
 
   return (
-    <div className="h-full relative">
-      <section className="transform -translate-y-24 mb-52 flex flex-col justify-center items-center px-4 relative ">
+    <div className="h-full relative md:flex md:flex-col">
+      <section className="transform -translate-y-24 mb-52 md:m-auto flex flex-col  justify-center items-center px-4 relative md:translate-y-0">
         <HeaderStep />
-        <m.div className="absolute w-[90%] mx-auto top-11">
-          <AnimatePresence>
-            {step === 1 && <Step1Form error={errors} />}
-          </AnimatePresence>
-          <AnimatePresence>{step === 2 && <Step2Form />}</AnimatePresence>
-          <AnimatePresence>{step === 3 && <Step3Form />}</AnimatePresence>
-          <AnimatePresence>{step === 4 && <Step4Form />}</AnimatePresence>
-          <AnimatePresence>{step === 5 && <Step5 />}</AnimatePresence>
+        <m.div className="absolute w-[90%] md:w-[800px] mx-auto md:mx-0 top-11 md:relative md:flex md:justify-between md:items-center md:bg-white shadow-none md:shadow-md md:rounded m-auto md:p-4 md:gap-6">
+          <AsideStep />
+          <div className="basis-2/3">
+            <AnimatePresence>
+              {step === 1 && <Step1Form error={errors} />}
+            </AnimatePresence>
+            <AnimatePresence>{step === 2 && <Step2Form />}</AnimatePresence>
+            <AnimatePresence>{step === 3 && <Step3Form />}</AnimatePresence>
+            <AnimatePresence>{step === 4 && <Step4Form />}</AnimatePresence>
+            <AnimatePresence>{step === 5 && <Step5 />}</AnimatePresence>
+          <div className="hidden md:block md:relativen md:w-fit">
+          <FooterBtn 
+            isMobile={false}
+            step={step}
+            handlePrevStep={handlePrevStep}
+            handleProceed={handleProceed}
+          />
+          </div>
+        </div>
         </m.div>
       </section>
-      <div className="bg-white w-full p-2 flex justify-between  fixed bottom-0">
-        {step !== 1 && (
-          <button onClick={handlePrevStep} className="text-cool-gray font-bold">
-            {step === 5 ? "Repeat Submission" : "Back"}
-          </button>
-        )}
-        {step !== 5 && (
-        <button
-          onClick={handleProceed}
-          className={`${step === 4 ? 'bg-purplish-blue' : 'bg-marine-blue '} rounded text-white py-1 px-4 ml-auto`}
-        >
-          {step === 4 ? 'Confirm' : 'Next Step'}
-        </button>
-        )}
-      </div>
+      <FooterBtn
+        handlePrevStep={handlePrevStep}
+        handleProceed={handleProceed}
+        step={step}
+        isMobile
+      />
     </div>
   );
 };
