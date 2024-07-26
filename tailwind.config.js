@@ -82,8 +82,8 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       backgroundImage: {
-        'mobileImage': "url('./src/assets/images/bg-sidebar-mobile.svg')",
-        desktopImage: "url(./src/assets/images/bg-sidebar-desktop.svg)",
+        'mobileImage': "url('/bg-sidebar-mobile.svg')",
+        'desktopImage': "url(/bg-sidebar-desktop.svg)",
       },
     },
   },
